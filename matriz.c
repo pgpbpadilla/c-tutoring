@@ -10,6 +10,25 @@ matriz generar_matriz(int m, int n) {
   /* Reserva memoria para `m` veces el tamanio de `pentero`.
      `pentero` es de tipo `int*`, es decir, se esta reservando
      memoria para `m` apuntadores a entero.
+     
+     La funcion `malloc` regresa `void*`, un apuntador a `void`. Que es 
+     como un comodin por que puede apuntar a cualquier tipo de dato.
+
+     IMPORTANTE: `malloc` regresa un apuntador que apunta al inicio del bloque reservado.
+
+     El resultado de `malloc` esta siendo `cast`-eado a el tipo `matriz` 
+     `matriz` es de tipo `int**`, un apuntador a apundadores a enteros, 
+     osease un apuntador de apunta a otro apuntador que apunta a un entero.
+
+     apuntador2 -> apuntador1 -> int
+
+     - apuntador1 guarda la direccion de memoria del entero al que apunta
+       esto es literal, apuntador1 guarda una direccion de memoria, no el valor del entero.
+     - apuntador2 guarda la direccion de `apuntador1`, no el valor del entero.
+
+     `(matriz)malloc(...)` es un casting, es decirle al compilador: "transforma el valor que me regreso `malloc` 
+     en un dato de tipo `matriz`"
+
      Si la reservacion es exitosa, `aux` es un apuntador de tipo `int**` que apunta al inicio del bloque reservado.
      Si la reservacion de memoria falla, `aux` tendra el valor `NULL`
    */

@@ -5,8 +5,8 @@ float operacion(int, int, int);
 
 int main(void) {
 
-    int opcion = -1;
-    int numero1=0, numero2 =0;
+    int opcion;
+    int numero1, numero2;
     
     do {
         printf("Operaciones del Malnacidation!\n");

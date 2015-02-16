@@ -42,7 +42,7 @@ int main(void) {
 float operacion(int numero1, int numero2, int opcion){
 
     float resultado = 0.0f;
-    
+
     switch (opcion) {
         case 1: /*Suma*/
             resultado= (float)(numero1 + numero2);

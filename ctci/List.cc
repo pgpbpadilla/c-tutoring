@@ -1,65 +1,71 @@
+#include "List.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-class Node {
+Node::Node(int value) :data{value} {
+  next = nullptr;
+}
 
-public:
+string Node::toString () {
+  Node *current = this;
+  string result = to_string(current->data) + " ";
 
-  Node* next = nullptr;
-  int data;
-  Node(int value) :data{value} {}
-  string toString () {
-    Node *current = this;
-    string result = to_string(current->data) + " ";
-
-    while (nullptr != current->next) {
-      result += to_string(current->next->data) + " ";
-      current = current->next;
-    }
-
-    return result;
+  while (nullptr != current->next) {
+    result += to_string(current->next->data) + " ";
+    current = current->next;
   }
 
-};
+  return result;
+}
 
-class List {
+List::List() {
+  head = nullptr;
+}
+
+void List::add(int data) {
+  Node* last = new Node(data);
+  Node* current = head;
+
+  cout<< "Created new node for data: " << data << endl;
   
-public:
-  Node* head;
-
-  void add(Node* n) {
-    Node* last = n;
-    Node* current = head;
-
-    while (nullptr != current->next){
-      current = current->next;
-    }
-
-    current->next = last;
+  if (nullptr == head) {
+    head = last;
+    return;
   }
 
-  void remove(Node* n){
-    Node* toDelete = nullptr;
-
-    if (head == n) {
-      toDelete = head;
-      head = head->next;
-      delete toDelete;
-    }
-
-    Node* current = head;
-    while(current->next->data != n->data) {
-      current = current->next;
-    }
-    toDelete = current->next;
-
-    current->next = toDelete->next;
-    delete toDelete;
+  while (nullptr != current->next){
+    // cout<< "current->data = " << current->data << endl;
+    // cout<< "current->next->data = " << current->next->data << endl;
+    current = current->next;
   }
 
-  string toString() {
-    return head->toString();
+  current->next = last;
+}
+
+void List::remove(int data){
+  Node* toDelete = nullptr;
+
+  // delete head node
+  if (head->data == data) {
+    toDelete = head;
+    head = head->next;
+    return;
   }
-};
+
+  Node* current = head;
+  // keep going until you find the element
+  // to delete
+  while(current->next->data != data) {
+    current = current->next;
+  }
+  toDelete = current->next;
+
+  current->next = toDelete->next;
+  return;
+}
+
+string List::toString() {
+  return head->toString();
+}

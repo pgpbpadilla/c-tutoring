@@ -28,7 +28,7 @@ void List::add(int data) {
   Node* last = new Node(data);
   Node* current = head;
 
-  cout<< "Created new node for data: " << data << endl;
+  // cout<< "Created new node for data: " << data << endl;
   
   if (nullptr == head) {
     head = last;

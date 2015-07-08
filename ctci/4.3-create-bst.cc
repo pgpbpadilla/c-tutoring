@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -30,18 +31,38 @@ public:
   }
 
   string stringFromTreeInOrder(TreeNode* node) {
-    string result = "";
-    // TODO: review tree traversal methods
-    return result;
+    
+    if (nullptr == node) {
+      // cout << "emtpy string" << endl;
+      return "";
+    }
+
+    stringstream result;    
+    
+    TreeNode* l = node;
+    cout<< "string for node:" << node->data << endl;
+
+    // cout << "go left" << endl;
+    result << this->stringFromTreeInOrder(l->left) << " ";
+    // cout << "current" << endl;
+    result << l->data << " ";
+    // cout << "go right" << endl;
+    result << this->stringFromTreeInOrder(l->right);
+
+    // cout << "result: " << result.str() << endl;
+    return result.str();
   }
 
-  string toString(TreeNode* node = nullptr, TraversalType traversalType = TraversalType::InOrder){
-    
-    TreeNode* root = nullptr == node ? this : node;
+  string toString(TraversalType traversalType = TraversalType::InOrder){
+
+    cout<< "toString: " << endl;
 
     switch (traversalType) {
     default:
-      return this->stringFromTreeInOrder(node);
+      {
+        cout << "traversal: InOrder" << endl;
+        return this->stringFromTreeInOrder(this);
+      }
     }
 
     return "Error trying to create string from node";
@@ -56,10 +77,10 @@ TreeNode* buildTree(vector<int> numbers, int start, int end) {
   }
   
   int midPoint = (end + start) / 2;
-  cout << "midPoint: " << midPoint << endl;
+  // cout << "midPoint: " << midPoint << endl;
 
   TreeNode* root = new TreeNode(numbers[midPoint]);
-  cout<< "root:" << root->data << endl;
+  // cout<< "root:" << root->data << endl;
 
   root->left = buildTree(numbers, start, midPoint - 1);
   root->right = buildTree(numbers, midPoint + 1, end);
@@ -87,6 +108,9 @@ int main(int argc, char* argv[]) {
   cout << endl;
   
   TreeNode* root = buildTree(numbers, 0, numbers.size()-1);
+
+  cout << "tree root: " << (nullptr == root ? -1 : root->data) << endl;
+  cout << root->toString() << endl;
   
   return 0;
 }

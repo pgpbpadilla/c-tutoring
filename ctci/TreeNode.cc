@@ -140,3 +140,22 @@ TreeNode* TreeNode::getNext(TreeNode* node) {
     return next;
   }
 }
+
+string TreeNode::serialize() {
+  return serialize(this, 0);
+}
+
+string TreeNode::serialize(TreeNode* node, int level) {
+
+  if (nullptr == node) {
+    return "";
+  }
+
+  stringstream result;
+  
+  result << string(level, '|') << node->data << endl;
+  result << serialize(node->left, level + 1);
+  result << serialize(node->right, level + 1);
+
+  return result.str();
+}

@@ -31,5 +31,7 @@ int main(int argc, char* argv[]) {
   cout << "tree root: " << (nullptr == root ? -1 : root->data) << endl;
   cout << root->toString() << endl;
 
+  cout << root->serialize();
+
   return 0;
 }

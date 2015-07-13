@@ -19,8 +19,10 @@ public:
   ~TreeNode();
   TreeNode* getNext(TreeNode* node);
   string toString(TraversalType traversalType = TraversalType::InOrder);
-
+  string serialize();
+  
 private:
+  string serialize(TreeNode* node, int level = 0);
   TreeNode* buildTree(vector<int> numbers, int start, int end);
   string stringFromTreeInOrder(TreeNode* node);
 };

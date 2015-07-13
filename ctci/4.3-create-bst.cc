@@ -26,12 +26,16 @@ int main(int argc, char* argv[]) {
   }
   cout << endl;
   
-  TreeNode* root = new TreeNode(numbers);
+  try {
+    TreeNode* root = new TreeNode(numbers);
 
-  cout << "tree root: " << (nullptr == root ? -1 : root->data) << endl;
-  cout << root->toString() << endl;
+    cout << "tree root: " << (nullptr == root ? -1 : root->data) << endl;
+    cout << root->toString() << endl;
 
-  cout << root->serialize();
+    cout << root->serialize();
+  } catch (const invalid_argument& e) {
+    cout << e.what() << endl;
+  }
 
   return 0;
 }

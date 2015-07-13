@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <stdexcept>
 
 using namespace std;
 
@@ -13,6 +14,11 @@ TreeNode::TreeNode(int value): data {value} {
 }
 
 TreeNode::TreeNode(vector<int> numbers) {
+
+  if (false == isSorted(numbers)) {
+    throw invalid_argument("The array is not sorted");
+  }
+
   TreeNode* root = buildTree(numbers, 0, numbers.size()-1);
 
   data = root->data;
@@ -158,4 +164,15 @@ string TreeNode::serialize(TreeNode* node, int level) {
   result << serialize(node->right, level + 1);
 
   return result.str();
+}
+
+bool TreeNode::isSorted(vector<int> numbers) {
+
+  for(int k = 1; k < numbers.size(); ++k) {
+    if (numbers[k] < numbers[k-1]) {
+      return false;
+    }
+  }
+
+  return true;
 }

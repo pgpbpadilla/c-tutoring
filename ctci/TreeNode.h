@@ -22,6 +22,7 @@ public:
   string serialize();
   
 private:
+  bool isSorted(vector<int> numbers);
   string serialize(TreeNode* node, int level = 0);
   TreeNode* buildTree(vector<int> numbers, int start, int end);
   string stringFromTreeInOrder(TreeNode* node);

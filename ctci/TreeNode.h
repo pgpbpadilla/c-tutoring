@@ -18,8 +18,10 @@ public:
   TreeNode(vector<int> numbers);
   ~TreeNode();
   TreeNode* getNext(TreeNode* node);
+  int getNext(int value);
   string toString(TraversalType traversalType = TraversalType::InOrder);
   string serialize();
+  TreeNode* find(int value);
   
 private:
   bool isSorted(vector<int> numbers);

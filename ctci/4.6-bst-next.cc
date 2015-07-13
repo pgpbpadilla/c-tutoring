@@ -11,8 +11,8 @@ int main(int argc, char* argv[]) {
   vector<int> numbers;
 
   if (argc < 2) {
-    cout<< "You must pass a list of integers" << endl;
-    cout<< "Usage: $ program <int> [<int> <int> ...]" << endl;
+    cout<< "You must pass a sorted list of integers" << endl;
+    cout<< "Usage: $ program [<int> <int> ...]" << endl;
     return -1;
   }
 
@@ -20,14 +20,18 @@ int main(int argc, char* argv[]) {
     numbers.push_back(atoi(argv[i]));
   }
 
-  TreeNode* root = new TreeNode(numbers);
+  try {
 
-  cout << root->serialize() << endl;
+    TreeNode* root = new TreeNode(numbers);
+    
+    cout << root->serialize() << endl;
   
-  TreeNode* next = root->getNext(root);
+    for (auto v: numbers) {
+      cout << "getNext(" << v << "): " << root->getNext(v) << endl;
+    }
 
-  if (nullptr != next) {
-    cout << next->data << endl;
+  } catch (const invalid_argument& e) {
+    cout << e.what() << endl;
   }
 
   return 0;

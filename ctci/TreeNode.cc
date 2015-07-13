@@ -100,19 +100,64 @@ string TreeNode::toString(TraversalType traversalType){
   return "Error trying to create string from node";
 }
 
+TreeNode* TreeNode::find(int value) {
+  TreeNode* found = nullptr;
+  
+  // found it, return this node
+  if (value == this->data) {
+    // cout << "found it!!!" << endl;
+    return this;
+  }
+  
+  // is less than the current node
+  if (value < this->data) {
+    // cout << value << " < " << this->data << endl;
+    // there is no left node, return NULL
+    if (nullptr == this->left) return nullptr;
+    
+    // search the left subtree
+    // cout << "searching left subtree" << endl;
+    return this->left->find(value);
+  } 
+
+  // is greater than this nodes data
+  // there's no right subtree, return NULL
+  // cout << value << " > " << this->data << endl;
+  if (nullptr == this->right) return nullptr;
+
+  // search the right subtree
+  // cout << "searching right subtree" << endl;
+  return this->right->find(value);
+}
+
+int TreeNode::getNext(int value) {
+
+  TreeNode* nodeForValue = find(value);
+
+  if (nullptr == nodeForValue) {
+    return -1;
+  } 
+  TreeNode* next = this->getNext(nodeForValue);
+  if (nullptr == next) {
+    return -1;
+  }
+  
+  return next->data; 
+}
+
 TreeNode* TreeNode::getNext(TreeNode* node) {
 
   TreeNode * next = nullptr;
 
-  cout << "getNext: " << node->data << endl;
+  //  cout << "getNext: " << node->data << endl;
 
   if (node->right != nullptr) {
 
-    cout << "try on the right subtree" << endl;
+    // cout << "try on the right subtree" << endl;
     next = node->right;
     
     while (nullptr != next->left) {
-      cout << "go left from: " << next->data  << endl;
+      // cout << "go left from: " << next->data  << endl;
       next = next->left;
     }
     
@@ -120,14 +165,14 @@ TreeNode* TreeNode::getNext(TreeNode* node) {
     
   } else { // there is no right child node
 
-    cout << "try looking up" << endl;
+    // cout << "try looking up" << endl;
     // start the search in the parent node
     next = node->parent;
 
     // if this is the root node
     // then there's no greater node
     if (nullptr == next) {
-      cout << "reached null" << next << endl;
+      // cout << "reached null" << next << endl;
       return nullptr;
     }
     
@@ -136,13 +181,13 @@ TreeNode* TreeNode::getNext(TreeNode* node) {
     // that's greater than the given node
     while (nullptr != next
            && next->data < node->data) {
-      cout << "go up: " << next->data << endl;
+      // cout << "go up: " << next->data << endl;
       next = next->parent;
     }
     
     // return the first parent node
     // that is greater than the given node
-    cout << "next found: " << (nullptr == next ? -1 : next->data) << endl;
+    // cout << "next found: " << (nullptr == next ? -1 : next->data) << endl;
     return next;
   }
 }

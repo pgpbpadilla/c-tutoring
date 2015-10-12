@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class Inventario {
   
@@ -8,18 +8,36 @@ public class Inventario {
         int cantidad;
     }
     
+    private ArrayList usbs;
+    private ArrayList laptops;
+    private ArrayList audifonos;
+    private double precioUSB;
+    private double precioLaptop;
+    private double precioAudifonos;
+    
+    public Inventario(){
+      
+        usbs = new ArrayList();     
+        laptops = new ArrayList();
+        audifonos = new ArrayList();
+        precioUSB = 100.0;
+        precioLaptop = 5000.0;
+        precioAudifonos = 250.0;
+    } 
+    
     public String toString(){
       
-        String descripionInvetario = "";
+        String descripcionInventario = "";
 
         // "USB (Kingston) - Cantidad: 30 - Precio - $40";
         // "Laptop (Acer) - Cantidad: 30 - Precio - $50";
 
-        descripcionInventario+= "USB\tCantidad: " + usbs.size() + "\tPrecio:" + precioUSB;
-        descripcionInventario+= "Laptop\tCantidad: " + laptops.size() + "\tPrecio:" + precioLaptop;
-        descripcionInventario+= "Audifonos\tCantidad: " + audifonos.size() + "\tPrecio:" + precioAudifonos;
+        descripcionInventario+= "\nUSB\tCantidad: " + usbs.size() + "\tPrecio: " + precioUSB;
+        descripcionInventario+= "\nLaptop\tCantidad: " + laptops.size() + "\tPrecio: " + precioLaptop;
+        descripcionInventario+= "\nAudifonos\tCantidad: " + audifonos.size() + "\tPrecio: " + precioAudifonos;
+        descripcionInventario+= "\n";
 
-        return descripcionInvetario;
+        return descripcionInventario;
     }
 
     public void vender(Transaccion transaccion){

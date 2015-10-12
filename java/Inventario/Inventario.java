@@ -8,9 +8,18 @@ public class Inventario {
         int cantidad;
     }
     
+    public String toString(){
+      
+        String descripionInvetario = "";
 
-    public Inventario(){
-        
+        // "USB (Kingston) - Cantidad: 30 - Precio - $40";
+        // "Laptop (Acer) - Cantidad: 30 - Precio - $50";
+
+        descripcionInventario+= "USB\tCantidad: " + usbs.size() + "\tPrecio:" + precioUSB;
+        descripcionInventario+= "Laptop\tCantidad: " + laptops.size() + "\tPrecio:" + precioLaptop;
+        descripcionInventario+= "Audifonos\tCantidad: " + audifonos.size() + "\tPrecio:" + precioAudifonos;
+
+        return descripcionInvetario;
     }
 
     public void vender(Transaccion transaccion){

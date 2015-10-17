@@ -48,27 +48,34 @@ public class Inventario {
         System.out.println("Comprando!!!!");
         
         if(transaccion.cantidad < 0){
-          System.out.println("Eres un tonto usuario");
-          return;
+            System.out.println("\nEres un tonto usuario!!!\n");
+            return;
         }
 
-        if (transaccion.tipoProducto == 1) { // 1 == USB
-            for(int i = 0; i < transaccion.cantidad; i++){
-                usbs.add("USB");
-            }
+        String producto= "";
+        ArrayList lista = null;
+
+        switch(transaccion.tipoProducto) {
+        case 1:
+            producto = "USB";
+            lista = usbs;
+            break;
+        case 2:
+            producto = "Laptop";
+            lista = laptops;
+            break;
+        case 3:
+            producto = "Audifonos";
+            lista = audifonos;
+            break;
+        default:
+            break;
         }
 
-        if (transaccion.tipoProducto == 3) {
-            for(int i = transaccion.cantidad; i > 0; i--) {
-                audifonos.add("Audifonos");
-            }
+        for(int i = 0; i < transaccion.cantidad; i++){
+            lista.add(producto);
         }
-        
-        if (transaccion.tipoProducto == 2) {
-          for(int i = 0; i < transaccion.cantidad; i++){
-            laptops.add("laptops");
-          }
-        }
+
     }
     
 

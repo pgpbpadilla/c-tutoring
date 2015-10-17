@@ -41,11 +41,67 @@ public class Inventario {
     }
 
     public void vender(Transaccion transaccion){
-        System.out.println("Vendiendo!!!!");
+
+        if(transaccion.cantidad < 0){
+            System.out.println("El usuario esta idiota y no sabe lo que hace");
+            return;
+        }
+
+        String producto= "";
+        ArrayList lista = null;
+	
+        switch(transaccion.tipoProducto) {
+        case 1:
+            producto = "USB";
+            lista = usbs;
+            break;
+        case 2:
+            producto = "Laptop";
+            lista = laptops;
+            break;
+        case 3:
+            producto = "Audifonos";
+            lista = audifonos;
+            break;
+        default:
+            System.out.println("\nOpcion invalida!!!\n");
+            return;
+        }
+
+        if(null != lista) {
+
+            // Si no hay productos de este tipo
+            if(lista.size() == 0) {
+                System.out.println("\nEl producto: " + producto + " no esta en existencia.\n");
+                return;
+            }
+
+            // Si se quieren vender mas de los que se tienen en inventario
+            if(transaccion.cantidad > lista.size()) {
+                System.out.println("\nNo hay suficientes productos de tipo: " + producto);
+                System.out.println("\nCantidad vendida: " + lista.size());
+
+                lista.clear(); // Remover todos los elementos de la lista
+                return;
+            }
+
+            // Si la cantidad a vender es menor o igual que la cantidad en inventario
+            int indiceProducto = lista.size() - 1; // el ultimo elemento de la lista
+            int k = transaccion.cantidad;
+            // removemos los ultimos k productos de la lista
+            for (int i = 0; i < k; i++) {
+                lista.remove(indiceProducto);
+                indiceProducto--;
+            }
+            System.out.println("\nCantidad vendida: " + transaccion.cantidad + "\n");
+            System.out.println("\nEn inventario: " + lista.size() + "\n");
+            
+        }
+        
+	
     }
     
     public void comprar(Transaccion transaccion){
-        System.out.println("Comprando!!!!");
         
         if(transaccion.cantidad < 0){
             System.out.println("\nEres un tonto usuario!!!\n");
@@ -53,7 +109,7 @@ public class Inventario {
         }
 
         String producto= "";
-        ArrayList lista = null;
+        ArrayList lista;
 
         switch(transaccion.tipoProducto) {
         case 1:
@@ -69,12 +125,15 @@ public class Inventario {
             lista = audifonos;
             break;
         default:
-            break;
+            System.out.println("\nOpcion invalida vayase al carajo!!!!\n");
+           return;
         }
 
         for(int i = 0; i < transaccion.cantidad; i++){
             lista.add(producto);
         }
+
+        System.out.println("\nCantidad de compra: " + transaccion.cantidad + "\n");
 
     }
     
@@ -121,8 +180,7 @@ public class Inventario {
 
             if (0 == seleccion) {
                 break;
-            }
-            
+            }            
             switch(seleccion){
             case 1: 
                 System.out.println(inventario);
@@ -136,6 +194,7 @@ public class Inventario {
                 inventario.comprar(datosDeCompra);
                 break;
             default:
+                System.out.println("\nOpcion invalida vuelva a nacer!!!!!\n");
                 break;
             }
             

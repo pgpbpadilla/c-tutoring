@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class Inventario {
   
     private class Transaccion {
-        int tipoProducto;
-        int cantidad;
+        public int tipoProducto;
+        public int cantidad;
     }
     
     private ArrayList usbs;
@@ -46,6 +46,29 @@ public class Inventario {
     
     public void comprar(Transaccion transaccion){
         System.out.println("Comprando!!!!");
+        
+        if(transaccion.cantidad < 0){
+          System.out.println("Eres un tonto usuario");
+          return;
+        }
+
+        if (transaccion.tipoProducto == 1) { // 1 == USB
+            for(int i = 0; i < transaccion.cantidad; i++){
+                usbs.add("USB");
+            }
+        }
+
+        if (transaccion.tipoProducto == 3) {
+            for(int i = transaccion.cantidad; i > 0; i--) {
+                audifonos.add("Audifonos");
+            }
+        }
+        
+        if (transaccion.tipoProducto == 2) {
+          for(int i = 0; i < transaccion.cantidad; i++){
+            laptops.add("laptops");
+          }
+        }
     }
     
 

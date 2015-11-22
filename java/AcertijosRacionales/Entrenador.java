@@ -5,6 +5,20 @@ import java.awt.*;
 
 public class Entrenador extends JFrame {
 
+    private JLabel tituloMenu;
+    private JPanel panelOpciones;
+	
+    private JLabel tituloRespuesta;
+    private JLabel acertijo;
+    private JTextField respuesta;
+    private JButton verificar;
+
+    private ArrayList<JRadioButton> opciones;
+    private JRadioButton suma;
+    private JRadioButton resta;
+    private JRadioButton multiplicacion;
+    private JRadioButton division;
+    
     public Entrenador () {
         setTitle("Racionales");
         setSize(300, 250);
@@ -22,18 +36,19 @@ public class Entrenador extends JFrame {
     }
     
     private void crearInterfaz() {
-        JLabel tituloMenu = new JLabel("Selecciona el tipo de operacion");
-        JPanel panelOpciones = new JPanel();
+
+        tituloMenu = new JLabel("Selecciona el tipo de operacion");
+        panelOpciones = new JPanel();
 	
-        JLabel tituloRespuesta = new JLabel("Respuesta");
-        JLabel acertijo = new JLabel();
-        JTextField respuesta = new JTextField();
-        JButton verificar = new JButton("Verificar");
+        tituloRespuesta = new JLabel("Respuesta");
+        acertijo = new JLabel();
+        respuesta = new JTextField();
+        verificar = new JButton("Verificar");
 	
-        JRadioButton suma = new JRadioButton("Suma");
-        JRadioButton resta = new JRadioButton("Resta");
-        JRadioButton multiplicacion = new JRadioButton("Multiplicacion");
-        JRadioButton division = new JRadioButton("Division");
+        suma = new JRadioButton("Suma");
+        resta = new JRadioButton("Resta");
+        multiplicacion = new JRadioButton("Multiplicacion");
+        division = new JRadioButton("Division");
 
        
         Container panelVentana = this.getContentPane();
@@ -109,7 +124,7 @@ public class Entrenador extends JFrame {
                                + acertijoActual.getRespuesta());
         } while (operacionSeleccionada != 0);
     }
-    
+
     public static void main(String []args){
         // Tipo nombre = new Tipo()
         Entrenador entrenador = new Entrenador();

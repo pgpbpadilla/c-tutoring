@@ -36,10 +36,31 @@ public class Entrenador extends JFrame implements ItemListener {
         System.out.println("4. Division");
         System.out.println("0. Salir\n");
     }
-    
+
+    private void actualizaOpciones(JRadioButton boton) {
+        System.out.println("Actualizar Seleccion: " + boton.getText());
+        // limpia todas las opciones, menos la seleccionada
+        for (JRadioButton b: opciones) {
+            if (b != boton && b.isSelected()) {
+                System.out.println("Limpiando opcion: " + b.getText());
+                b.setSelected(false);
+            }
+        }
+
+    }
+
     public void itemStateChanged(ItemEvent e) {
+
+        JRadioButton botonSeleccionado = (JRadioButton)e.getSource();
+
+        if (false == botonSeleccionado.isSelected()) {
+            return;
+        }
+
         System.out.println("Seleccion: " + botonSeleccionado.getText());
+        actualizaOpciones(botonSeleccionado);
     }    
+
     private void crearInterfaz() {
 
         tituloMenu = new JLabel("Selecciona el tipo de operacion");

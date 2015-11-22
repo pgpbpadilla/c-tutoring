@@ -37,6 +37,13 @@ public class Entrenador extends JFrame implements ItemListener {
         System.out.println("0. Salir\n");
     }
 
+    private Acertijo crearNuevoAcertijo(int operacionSeleccionada){
+        Random random = new Random();
+        Racional operando1 = new Racional(random.nextInt(10), random.nextInt(10));
+        Racional operando2 = new Racional(random.nextInt(10), random.nextInt(10));
+        Acertijo acertijo = new Acertijo(operacionSeleccionada, operando1, operando2);
+        return acertijo;
+    }
     private void actualizaOpciones(JRadioButton boton) {
         System.out.println("Actualizar Seleccion: " + boton.getText());
         // limpia todas las opciones, menos la seleccionada
@@ -46,7 +53,8 @@ public class Entrenador extends JFrame implements ItemListener {
                 b.setSelected(false);
             }
         }
-
+        
+        establecerAcertijo(crearNuevoAcertijo(leerSeleccion()));
     }
 
     public void itemStateChanged(ItemEvent e) {
@@ -196,11 +204,7 @@ public class Entrenador extends JFrame implements ItemListener {
         
         int operacionSeleccionada = entrenador.leerSeleccion();
 
-        Random random = new Random();
-        Racional operando1 = new Racional(random.nextInt(10), random.nextInt(10));
-        Racional operando2 = new Racional(random.nextInt(10), random.nextInt(10));
-        Acertijo acertijo = new Acertijo(operacionSeleccionada, operando1, operando2);
-
+        Acertijo acertijo = entrenador.crearNuevoAcertijo(operacionSeleccionada);
         entrenador.establecerAcertijo(acertijo);
     }
 } 

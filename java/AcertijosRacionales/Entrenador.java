@@ -34,7 +34,7 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
     }
 
     private void mostrarOpciones () {
-        System.out.println("\nBienvenido al entrenador de racionalizacion, motherfucker!");
+        System.out.println("\nBienvenido al entrenador de aritmetica con Racionales!");
 
         System.out.println("1. Suma");
         System.out.println("2. Resta");
@@ -100,12 +100,12 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
         Racional respuestaUsuario = crearRespuesta(respuesta.getText());
 
         if (acertijoActual.getRespuesta().equals(respuestaUsuario)) {
-            notificacion.setText("Iralo! No estas tan pendejo.");
+            notificacion.setText("Correcto!!");
             notificacion.setForeground(Color.BLUE);
             respuesta.setForeground(Color.BLUE); 
            timerNotification.start();
         } else {
-            notificacion.setText("Eres un idiota!");
+            notificacion.setText("Error!");
             notificacion.setForeground(Color.RED);
             acertijo.setForeground(Color.RED);
             respuesta.setForeground(Color.RED);
@@ -210,7 +210,7 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
             System.out.println(acertijoActual.toString());
 
             int numerador = -1, denominador = -1;
-            System.out.println("Dame la respuesta motherfucker!");
+            System.out.println("Dame la respuesta!");
             System.out.println("Numerador? - ");
             numerador = input.nextInt();
             System.out.println("Denominador? - ");
@@ -256,6 +256,7 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
         acertijo.setForeground(Color.BLACK);
         respuesta.setForeground(Color.BLACK);
         respuesta.setText("");
+	notificacion.setText("");
         
     }
 

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Entrenador extends JFrame implements ItemListener {
+public class Entrenador extends JFrame implements ItemListener, ActionListener {
 
     private JLabel tituloMenu;
     private JPanel panelOpciones;
@@ -69,6 +69,13 @@ public class Entrenador extends JFrame implements ItemListener {
         actualizaOpciones(botonSeleccionado);
     }    
 
+    public void actionPerformed(ActionEvent actionEvent) {
+        System.out.println("-ActionPerformed-");
+        System.out.println(respuesta.getText());
+
+	
+    }
+
     private void crearInterfaz() {
 
         tituloMenu = new JLabel("Selecciona el tipo de operacion");
@@ -78,6 +85,7 @@ public class Entrenador extends JFrame implements ItemListener {
         acertijo = new JLabel();
         respuesta = new JTextField();
         verificar = new JButton("Verificar");
+        verificar.addActionListener(this);
 	
         suma = new JRadioButton("Suma");
         suma.addItemListener(this);

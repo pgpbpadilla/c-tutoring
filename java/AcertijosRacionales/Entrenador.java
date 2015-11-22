@@ -125,11 +125,33 @@ public class Entrenador extends JFrame {
         } while (operacionSeleccionada != 0);
     }
 
+    private int leerSeleccion() {
+        
+        if (suma.isSelected()) {
+            return 1;
+        }
+
+        if (resta.isSelected()) {
+            return 2;
+        }
+
+        if (multiplicacion.isSelected()) {
+            return 3;
+        }
+
+        if (division.isSelected()) {
+            return 4;
+        }
+	
+        return 1;
+    }
     public static void main(String []args){
         // Tipo nombre = new Tipo()
         Entrenador entrenador = new Entrenador();
         entrenador.setVisible(true);
         entrenador.crearInterfaz();
+        
+        int operacionSeleccionada = entrenador.leerSeleccion();
     }
 } 
 

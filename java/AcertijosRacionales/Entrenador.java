@@ -2,8 +2,9 @@ import java.util.Random;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class Entrenador extends JFrame {
+public class Entrenador extends JFrame implements ItemListener {
 
     private JLabel tituloMenu;
     private JPanel panelOpciones;
@@ -35,6 +36,9 @@ public class Entrenador extends JFrame {
         System.out.println("0. Salir\n");
     }
     
+    public void itemStateChanged(ItemEvent e) {
+        System.out.println("Seleccion: " + botonSeleccionado.getText());
+    }    
     private void crearInterfaz() {
 
         tituloMenu = new JLabel("Selecciona el tipo de operacion");
@@ -46,9 +50,14 @@ public class Entrenador extends JFrame {
         verificar = new JButton("Verificar");
 	
         suma = new JRadioButton("Suma");
+        suma.addItemListener(this);
         resta = new JRadioButton("Resta");
+        resta.addItemListener(this);
         multiplicacion = new JRadioButton("Multiplicacion");
+        multiplicacion.addItemListener(this);
         division = new JRadioButton("Division");
+        division.addItemListener(this);
+
 
        
         Container panelVentana = this.getContentPane();

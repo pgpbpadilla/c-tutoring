@@ -96,6 +96,7 @@ public class Entrenador extends JFrame implements ItemListener {
 
         panelOpciones.setBounds(10, 40, 280, 70);
 
+        suma.setSelected(true); // Opcion por defecto es Sumar
         panelOpciones.add(suma);
         panelOpciones.add(resta);
         panelOpciones.add(multiplicacion);

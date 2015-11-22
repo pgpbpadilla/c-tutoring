@@ -3,6 +3,7 @@ import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Entrenador extends JFrame implements ItemListener {
 
@@ -58,6 +59,12 @@ public class Entrenador extends JFrame implements ItemListener {
         division = new JRadioButton("Division");
         division.addItemListener(this);
 
+        opciones = new ArrayList();
+
+        opciones.add(suma);
+        opciones.add(resta);
+        opciones.add(multiplicacion);
+        opciones.add(division);
 
        
         Container panelVentana = this.getContentPane();

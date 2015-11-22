@@ -22,6 +22,7 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
     private JRadioButton division;
 
     private Acertijo acertijoActual;
+    private JLabel notificacion;
     
     public Entrenador () {
         setTitle("Racionales");
@@ -96,8 +97,12 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
         Racional respuestaUsuario = crearRespuesta(respuesta.getText());
 
         if (acertijoActual.getRespuesta().equals(respuestaUsuario)) {
+            notificacion.setText("Iralo! No estas tan pendejo.");
+            notificacion.setForeground(Color.BLUE);
             respuesta.setForeground(Color.BLUE); 
         } else {
+            notificacion.setText("Eres un idiota!");
+            notificacion.setForeground(Color.RED);
             acertijo.setForeground(Color.RED);
             respuesta.setForeground(Color.RED);
         }
@@ -111,6 +116,7 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
 	
         tituloRespuesta = new JLabel("Respuesta");
         acertijo = new JLabel();
+        notificacion = new JLabel();
         respuesta = new JTextField();
         verificar = new JButton("Verificar");
         verificar.addActionListener(this);
@@ -148,8 +154,10 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
 
         panelVentana.add(panelOpciones);
 
-        acertijo.setBounds(10, 120, 280, 20);
+        acertijo.setBounds(10, 120, 60, 20);
         panelVentana.add(acertijo);
+        notificacion.setBounds(80, 120, 220, 20);
+        panelVentana.add(notificacion);
 
         tituloRespuesta.setBounds(10, 150, 280, 20 );
         panelVentana.add(tituloRespuesta);

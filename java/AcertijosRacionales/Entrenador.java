@@ -26,6 +26,7 @@ public class Entrenador extends JFrame {
         JPanel panelOpciones = new JPanel();
 	
         JLabel tituloRespuesta = new JLabel("Respuesta");
+        JLabel acertijo = new JLabel();
         JTextField respuesta = new JTextField();
         JButton verificar = new JButton("Verificar");
 	
@@ -49,14 +50,17 @@ public class Entrenador extends JFrame {
         panelOpciones.add(division);
 
         panelVentana.add(panelOpciones);
-    
-        tituloRespuesta.setBounds(10, 120, 280, 20 );
+
+        acertijo.setBounds(10, 120, 280, 20);
+        panelVentana.add(acertijo);
+
+        tituloRespuesta.setBounds(10, 150, 280, 20 );
         panelVentana.add(tituloRespuesta);
 
-        respuesta.setBounds(10, 150, 130, 20);
+        respuesta.setBounds(10, 180, 130, 20);
         panelVentana.add(respuesta);
     
-        verificar.setBounds(160, 150, 130, 20);
+        verificar.setBounds(160, 180, 130, 20);
         panelVentana.add(verificar);
 
         this.revalidate();

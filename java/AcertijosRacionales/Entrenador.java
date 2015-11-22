@@ -183,6 +183,11 @@ public class Entrenador extends JFrame implements ItemListener {
 	
         return 1;
     }
+
+    private void establecerAcertijo(Acertijo a){
+        acertijo.setText(a.toString()); // actualizar la etiqueda acertijo con el texto `Acertijo.toString`
+    }
+
     public static void main(String []args){
         // Tipo nombre = new Tipo()
         Entrenador entrenador = new Entrenador();
@@ -190,6 +195,13 @@ public class Entrenador extends JFrame implements ItemListener {
         entrenador.crearInterfaz();
         
         int operacionSeleccionada = entrenador.leerSeleccion();
+
+        Random random = new Random();
+        Racional operando1 = new Racional(random.nextInt(10), random.nextInt(10));
+        Racional operando2 = new Racional(random.nextInt(10), random.nextInt(10));
+        Acertijo acertijo = new Acertijo(operacionSeleccionada, operando1, operando2);
+
+        entrenador.establecerAcertijo(acertijo);
     }
 } 
 

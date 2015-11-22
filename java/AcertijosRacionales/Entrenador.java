@@ -20,6 +20,8 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
     private JRadioButton resta;
     private JRadioButton multiplicacion;
     private JRadioButton division;
+
+    private Acertijo acertijoActual;
     
     public Entrenador () {
         setTitle("Racionales");
@@ -69,10 +71,36 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
         actualizaOpciones(botonSeleccionado);
     }    
 
+    private Racional crearRespuesta(String cadena) {
+        if("".equals(cadena)){
+            return new Racional(0,0);
+        }
+
+        // 123/345 => n = 123; d = 345
+        // String.split(String separador)
+        // "abc-efg".split("-") => ["abc", "efg"]
+        String [] elementos = cadena.split("/"); // "123/345" => ["123", "345"]
+
+        // "123" =?> 123
+        // Integer.parseInt(String s) => int
+        int n = Integer.parseInt(elementos[0]);
+        int d = Integer.parseInt(elementos[1]);
+
+        return new Racional(n, d);
+    }
+
     public void actionPerformed(ActionEvent actionEvent) {
         System.out.println("-ActionPerformed-");
         System.out.println(respuesta.getText());
 
+        Racional respuestaUsuario = crearRespuesta(respuesta.getText());
+
+        if (acertijoActual.getRespuesta().equals(respuestaUsuario)) {
+            respuesta.setForeground(Color.BLUE); 
+        } else {
+            acertijo.setForeground(Color.RED);
+            respuesta.setForeground(Color.RED);
+        }
 	
     }
 
@@ -202,6 +230,11 @@ public class Entrenador extends JFrame implements ItemListener, ActionListener {
 
     private void establecerAcertijo(Acertijo a){
         acertijo.setText(a.toString()); // actualizar la etiqueda acertijo con el texto `Acertijo.toString`
+        acertijoActual = a;
+        acertijo.setForeground(Color.BLACK);
+        respuesta.setForeground(Color.BLACK);
+        respuesta.setText("");
+        
     }
 
     public static void main(String []args){

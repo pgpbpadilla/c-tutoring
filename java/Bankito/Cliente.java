@@ -1,27 +1,49 @@
+import java.util.*;
+
 public class Cliente {
     // Atributo con acceso privado
     private String nombre;	
-    private Cuenta cuenta;
-    private String numCta;
+    private ArrayList<Cuenta> cuentas;
+
     // Constructor: inicializa objetos de la clase Cliente
-    public Cliente(String nombre, String numCta){
+    public Cliente(String nombre){
         this.nombre= nombre;
-        this.numCta= numCta;
+	cuentas = new ArrayList<Cuenta> ();
     }
     //Métodos obtenerNombre: devuelve el  nombre
     public String obtenerNombre( ){
         return nombre;
     }  
-    //Métodos obtenerCuenta: devuelve el objeto de la clase Cuenta
-    public Cuenta obtenerCuenta( ){
-        return cuenta;
+
+    public Cuenta obtenerCuenta(int indice){
+        return cuentas.get(indice);
     } 
-    // establecerCuenta: establece el objeto de la clase Cuenta
-    public void establecerCuenta(Cuenta cta){
-        cuenta = cta;
+
+    public void agregarCuenta(Cuenta cta){
+        cuentas.add(cta);
     }
-    // obtenerNombre: devuelve el  numero de cuenta
-    public String obtenerNumCta( ){
-        return numCta;
+
+    public int obtenerNumCuentas( ){
+        return cuentas.size();
     } 
+
+    public String toString() {
+        String s = "";
+
+        s += "\nNombre: " + nombre;
+	for (Cuenta c: cuentas) {
+	    s += "\nCuenta: "
+		+ "\n\t" + c.toString();
+	}
+        
+        return s;
+    }
+
+    public void reportarEdosDeCuenta(){
+	System.out.println("### Estados de cuenta ###");
+	for(Cuenta c: cuentas) {
+	    System.out.println(c.toString());
+	}
+	System.out.println("### Fin de Estados de cuenta ###");
+    }
 } // Fin de la clase Cuenta

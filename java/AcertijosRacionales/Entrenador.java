@@ -1,10 +1,14 @@
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
 
-public class Entrenador{
+public class Entrenador extends JFrame {
 
     public Entrenador () {
-        
+        setTitle("Racionales");
+        setSize(300, 250);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private void mostrarOpciones () {
@@ -17,7 +21,49 @@ public class Entrenador{
         System.out.println("0. Salir\n");
     }
     
-    public static void main(String []args){
+    private void crearInterfaz() {
+        JLabel tituloMenu = new JLabel("Selecciona el tipo de operacion");
+        JPanel panelOpciones = new JPanel();
+	
+        JLabel tituloRespuesta = new JLabel("Respuesta");
+        JTextField respuesta = new JTextField();
+        JButton verificar = new JButton("Verificar");
+	
+        JRadioButton suma = new JRadioButton("Suma");
+        JRadioButton resta = new JRadioButton("Resta");
+        JRadioButton multiplicacion = new JRadioButton("Multiplicacion");
+        JRadioButton division = new JRadioButton("Division");
+
+       
+        Container panelVentana = this.getContentPane();
+        panelVentana.setLayout(null); // Borrar configuracion de layout
+
+        tituloMenu.setBounds(10, 10, 280, 20);
+        panelVentana.add(tituloMenu);
+
+        panelOpciones.setBounds(10, 40, 280, 70);
+
+        panelOpciones.add(suma);
+        panelOpciones.add(resta);
+        panelOpciones.add(multiplicacion);
+        panelOpciones.add(division);
+
+        panelVentana.add(panelOpciones);
+    
+        tituloRespuesta.setBounds(10, 120, 280, 20 );
+        panelVentana.add(tituloRespuesta);
+
+        respuesta.setBounds(10, 150, 130, 20);
+        panelVentana.add(respuesta);
+    
+        verificar.setBounds(160, 150, 130, 20);
+        panelVentana.add(verificar);
+
+        this.revalidate();
+	
+    }
+
+    private void entrenarConLineaDeComandos() {
 	
         Entrenador entrenador = new Entrenador();
 
@@ -58,7 +104,13 @@ public class Entrenador{
                                + " no es igual a " 
                                + acertijoActual.getRespuesta());
         } while (operacionSeleccionada != 0);
-
+    }
+    
+    public static void main(String []args){
+        // Tipo nombre = new Tipo()
+        Entrenador entrenador = new Entrenador();
+        entrenador.setVisible(true);
+        entrenador.crearInterfaz();
     }
 } 
 

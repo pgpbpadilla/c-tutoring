@@ -17,11 +17,23 @@ int menu () {
   return opcion;
 }
 
+int calcula_tamano(char cadena[]) {
+  int longitud = 0, i = 0;
+  
+  while(cadena[i] != '\0') {
+    longitud++;
+    i++;
+  }
+  
+  return longitud;
+}
 
-void copiar(char origen[5], char destino[5]){
+void copiar(char origen[], char* destino){
   int i;
 
-  for(i=0;i<5;i++){
+  int longitud = calcula_tamano(origen);
+
+  for(i=0;i<longitud;i++){
     destino[i] = origen[i];
   } 
    
@@ -29,8 +41,8 @@ void copiar(char origen[5], char destino[5]){
 
 void copiar_cadena(){
 
-  char cadena[5];
-  char copia[5];
+  char cadena[255];
+  char copia[255];
 
   printf("Ingrese una cadena de caracteres: \n");
   scanf("%s", cadena);

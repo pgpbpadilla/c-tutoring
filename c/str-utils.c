@@ -36,6 +36,8 @@ void copiar(char origen[], char* destino){
   for(i=0;i<longitud;i++){
     destino[i] = origen[i];
   } 
+
+  destino[longitud] = '\0';
    
 };
 
@@ -47,6 +49,7 @@ void copiar_cadena(){
   printf("Ingrese una cadena de caracteres: \n");
   scanf("%s", cadena);
   printf("Cadena entrada = %s, direccion= %p\n", cadena, &cadena);
+  printf("Longitud de '%s' = %d\n", cadena, calcula_tamano(cadena));
   
   copiar(cadena, copia);
   

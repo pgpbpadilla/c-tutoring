@@ -18,11 +18,10 @@ int menu () {
 }
 
 int calcula_tamano(char cadena[]) {
-  int longitud = 0, i = 0;
+  int longitud = 0;
   
-  while(cadena[i] != '\0') {
+  while(cadena[longitud] != '\0') {
     longitud++;
-    i++;
   }
   
   return longitud;
@@ -33,12 +32,9 @@ void copiar(char origen[], char* destino){
 
   int longitud = calcula_tamano(origen);
 
-  for(i=0;i<longitud;i++){
+  for(i=0;i<=longitud;i++){
     destino[i] = origen[i];
   } 
-
-  destino[longitud] = '\0';
-   
 };
 
 void copiar_cadena(){

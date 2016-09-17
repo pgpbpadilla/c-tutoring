@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<string.h>
 
 void print_array(int numeros[], int cantidad, char* titulo){
   printf("\n%s:\n\t[ ", titulo);
@@ -13,35 +14,41 @@ void print_array(int numeros[], int cantidad, char* titulo){
   printf(" ]\n\n");
 }
 
-int particion(int numero[], int min, int max){
+int particion(int numero[], int min, int max, char* direccion){
 
-  int j,i,intercambio,pivote;
+  int j,i,temp,pivote, intercambiar;
 
   pivote = numero[max];
   i = min;
   for(j= min; j<max; j++){
-    if(numero[j] <= pivote){
+    
+    if (0 == strcmp(direccion, "descendente")) {
+      intercambiar = numero[j] > pivote;
+    } else { /* Odena ascendente por defecto */
+      intercambiar = numero[j] <= pivote;
+    }
 
-      intercambio = numero[i];
+    if(intercambiar){
+      temp = numero[i];
       numero[i]=numero[j];
-      numero[j]=intercambio;
+      numero[j]=temp;
       i++;
     }
   }
-  intercambio = numero[i];
+  temp = numero[i];
   numero[i]=numero[max];
-  numero[max]=intercambio;
+  numero[max]=temp;
   
   return i;
 }
 
-void quicksort(int numeros[], int min, int max) {
+void quicksort(int numeros[], int min, int max, char* direccion) {
 
   int pivote;
   if(min < max){
-    pivote=particion(numeros, min, max);
-    quicksort(numeros, min, pivote-1);
-    quicksort(numeros, pivote+1, max);
+    pivote=particion(numeros, min, max, direccion);
+    quicksort(numeros, min, pivote-1, direccion);
+    quicksort(numeros, pivote+1, max, direccion);
   }
 
   
@@ -85,8 +92,11 @@ int main (void) {
   llenar_arreglo(numeros, cantidad);
   print_array(numeros, cantidad, "Antes de ordenar");
 
-  quicksort(numeros, 0, cantidad-1);
-  print_array(numeros, cantidad, "Despues de ordenar");
+  quicksort(numeros, 0, cantidad-1, "descendente");
+  print_array(numeros, cantidad, "Ordenado de manera descendente");
+
+  quicksort(numeros, 0, cantidad-1, "ascendente");
+  print_array(numeros, cantidad, "Ordenado de manera ascendente");
 
   free(numeros);
 }

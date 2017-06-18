@@ -20,5 +20,8 @@ for c in input:
 
     print('stack: {}'.format(stack))
     
+if len(stack) > 0:
+    sys.exit('Unbalanced')
+
 print('Balanced!, Yay!')
 
